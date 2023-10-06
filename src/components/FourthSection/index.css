@@ -1,0 +1,33 @@
+.form-row{
+    @apply
+    grid 
+    /* grid-cols-2  */
+    w-full
+    p-4
+    px-[10%]
+    gap-4
+    lg:gap-7
+    lg:grid-cols-2
+}
+
+.form-row:nth-child(odd){
+    @apply
+    bg-[#d7d7d7]
+}
+
+.form-row-input-container{
+    @apply
+    grid
+    lg:grid-cols-2
+
+}
+
+.form-row-input{
+    @apply
+    pl-5
+}
+
+label{
+    @apply
+    pl-2
+}

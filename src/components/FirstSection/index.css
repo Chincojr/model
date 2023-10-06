@@ -1,0 +1,84 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.first-section-selection{
+    @apply
+    border-2 
+    border-[#eaeaea]
+    rounded
+    px-[5%]
+    md:px-[10%]
+    flex
+    flex-col
+    items-center
+    py-[5%]
+}
+
+.selection-head{
+    @apply
+    border-2 
+    border-[#7e7e7f]
+    w-full
+    rounded
+    text-[#acadb0]
+    flex
+    flex-col
+    items-center
+    justify-center
+    mb-10
+
+}
+
+.selection-img-container{
+    @apply
+    flex
+    flex-row
+    overflow-hidden
+    h-full
+    relative
+    /* hidden */
+    max-w-[90%]
+
+
+}
+
+.first-selection-img{
+    @apply
+    /* w-[200px] */
+    w-full
+    h-full
+    /* md:max-h-[350px]
+    md:max-w-[350px] */
+
+
+}
+
+.img-selector{
+    @apply
+    absolute
+    bottom-2
+    grid
+    grid-flow-col
+    gap-2
+    w-full
+    left-0
+    right-0
+    justify-center
+}
+
+.selector{
+    @apply
+    bg-black
+    rounded-full
+    h-[15px]
+    w-[15px]
+    items-center
+}
+
+.selected{
+    @apply
+    bg-blue-500
+}
+
