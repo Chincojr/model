@@ -6,7 +6,7 @@ import sample from '../../assets/animation_lneiudfu.mp4'
 const bathroom = [
     [
         {
-            selection_caption: "The size of my kitchen",
+            selection_caption: "The size of my bathroom",
             options: ["Small ( <100 st. ft )","Medium is ( 101-251 sq. ft )","Large ( 251 + sq.ft )"],
             type: "radio"
         },
@@ -64,7 +64,7 @@ const flooring = [
     ],
     [
         {
-            selection_caption: "The size of my kitchen",
+            selection_caption: "Square foot of the area needed",
             options: ["Small ( <100 st. ft )","Medium is ( 101-251 sq. ft )","Large ( 251 + sq.ft )"],
             type: "radio"
         },
