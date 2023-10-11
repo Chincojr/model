@@ -7,7 +7,7 @@ const bathroom = [
     [
         {
             selection_caption: "The size of my bathroom",
-            options: ["Small ( <100 st. ft )","Medium is ( 101-251 sq. ft )","Large ( 251 + sq.ft )"],
+            options: ["Small ( 8,000 -10,000 sq. ft )","Medium ( 9,000 - 11,000 sq.ft  )","Large ( 12000 - 15,000 sq. ft )"],
             type: "radio"
         },
         {
@@ -18,12 +18,12 @@ const bathroom = [
     ],
     [
         {
-            selection_caption: "Sinks Faucet",
+            selection_caption: "Plumbing",
             options: ["Yes", "No"],
             type: "radio"
         },
         {
-            selection_caption: "Black Splash",
+            selection_caption: "Counter Tops",
             options: ["Tile","Glass","Procelain","Not Sure", "Not at this time"],
             type: "radio"
         }
@@ -31,14 +31,15 @@ const bathroom = [
     [
         {
             selection_caption: "Lighting",
-            options: ["Basic", "Mid Range","High-End", "Not sure", "Not at this time"],
+            options: ["Basic", "Mid Range","High-End", "Not sure", "Not at this time","No"],
             type: "radio"
         },
         {
-            selection_caption: "Will you need",
-            options: ["New windows","Solar","Roofing","Interior painting", "Exterior painting","Siding", "Plumbing"],
-            type: "checkbox"
-        }
+            selection_caption: "Tub to Shower",
+            options: ["Yes", "No"],
+            type: "radio"
+        },
+
     ],    
     [
         {
@@ -52,20 +53,33 @@ const bathroom = [
             type: "radio"
         }
     ],
+    [
+        {
+            selection_caption: "Need a Demo",
+            options: ["Yes", "No"],
+            type: "radio"
+        },
+        {
+            selection_caption: "Will you need",
+            options: ["New windows","Solar","Roofing","Interior painting", "Exterior painting","Siding"],
+            type: "checkbox"
+        }
+
+    ]
 ]
 
 const flooring = [
     [
         {
-            selection_caption: "Material",
-            options: ["Vinyl","Tile","Wood","Carpet","Not sure"],
+            selection_caption: "Square foot of the area needed",
+            options: ["Small ( < 2,500 sq. ft )","Medium is ( 1,919 - 4,769 sq. ft )","Large ( 3,765 - 15,000 sq.ft )"],
             type: "radio"
         },
     ],
     [
         {
-            selection_caption: "Square foot of the area needed",
-            options: ["Small ( <100 st. ft )","Medium is ( 101-251 sq. ft )","Large ( 251 + sq.ft )"],
+            selection_caption: "Material",
+            options: ['Luxury', 'Vinyl', 'Blank', 'Tile', 'Laminate', 'Hard Wood', 'Carpet'],
             type: "radio"
         },
     ],
@@ -74,27 +88,35 @@ const flooring = [
             selection_caption: "Will you need",
             options: ["New windows","Solar","Roofing","Interior painting", "Exterior painting","Siding", "Plumbing"],
             type: "checkbox"
-        }
+        },
+    ],
+    [
+        {
+            selection_caption: "Need a Demo",
+            options: ["Yes", "No"],
+            type: "radio"
+        },
     ]
 ]
 
 const kitchen = [
     [
         {
+            selection_caption: "The size of my kitchen",
+            options: ["Small ( < 13700 sq. ft )","Medium is ( 16,700 - 42,000 sq. ft )","Large ( 18700 - 49,000 sq.ft )"],
+            type: "radio"
+        },
+        {
             selection_caption: "I have an island",
             options: ["Yes", "No"],
             type: "radio"
         },
-        {
-            selection_caption: "The shape of my kitchen",
-            options: ["Single wall","I-shape","U-shape","G-shape", "Gallery"],
-            type: "radio"
-        }
+
     ],
     [
         {
-            selection_caption: "The size of my kitchen",
-            options: ["Small ( <100 st. ft )","Medium is ( 101-251 sq. ft )","Large ( 251 + sq.ft )"],
+            selection_caption: "The shape of my kitchen",
+            options: ["Single wall","I-shape","U-shape","G-shape", "Gallery"],
             type: "radio"
         },
         {
@@ -117,20 +139,20 @@ const kitchen = [
     ],
     [
         {
-            selection_caption: "Sinks Faucet",
+            selection_caption: "Plumbing",
             options: ["Yes", "No"],
             type: "radio"
         },
         {
             selection_caption: "Black Splash",
-            options: ["Tile","Glass","Procelain","Not Sure", "Not at this time"],
+            options: ["4 inch", "Full Height"],
             type: "radio"
         }
     ],
     [
         {
             selection_caption: "Lighting",
-            options: ["Basic", "Mid Range","High-End", "Not sure", "Not at this time"],
+            options: ["Basic", "Mid Range","High-End", "Not sure", "Not at this time","No"],
             type: "radio"
         },
         {
@@ -141,16 +163,34 @@ const kitchen = [
     ],    
     [
         {
+            selection_caption: "Tub to Shower",
+            options: ["Yes", "No"],
+            type: "radio"
+        },
+        {
+            selection_caption: "Counter Tops",
+            options: ["Granite", "Quarts", "Porcelain" ],
+            type: "radio"
+        },
+
+    ],
+    [
+        {
+            selection_caption: "Need a Demo",
+            options: ["Yes", "No"],
+            type: "radio"
+        },
+        {
             selection_caption: "I would like my project completed",
             options: ["Immediately", "1-4weeks", "4+ weeks"],
             type: "radio"
         },
-    ],
+    ]
 ]
 
 const selection_type =[bathroom,flooring,kitchen]
 
-const Index = ({handleChange, modelValue}) => {
+const Index = ({handleChange, modelValue, Reset}) => {
     const [overlay, setOverlay] = useState('hidden')
 
     const HandlePopUp = (value) => {
@@ -197,7 +237,7 @@ const Index = ({handleChange, modelValue}) => {
             }
         </div>
         <div className='grid justify-center gap-2 grid-flow-col p-4'>
-            <button className='bg-[#212528] border-[#212528] hover:bg-transparent hover:text-[#212528] border-2  p-2 px-5 rounded-md text-white'>Cancel</button>
+            <button onClick={() => Reset()} className='bg-[#212528] border-[#212528] hover:bg-transparent hover:text-[#212528] border-2  p-2 px-5 rounded-md text-white'>Cancel</button>
             <button onClick={() => HandlePopUp('block')} className='bg-[#3aba84] border-[#3aba84] hover:bg-transparent hover:text-[#3aba84] border-2 p-2 px-5 rounded-md text-white'>OK</button>
         </div>
      </div>

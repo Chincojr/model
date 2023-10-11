@@ -16,11 +16,12 @@
     grid-rows-[85%_15%]
 }
 
-.third-section-left-img-container{
+.third-section-right-img-container{
     @apply
     grid
     grid-cols-2
     gap-1
+    overflow-hidden
 }
 
 .third-selection-caption-container{
@@ -44,3 +45,5 @@
     
     /* h-full */
 }
+
+
