@@ -12,7 +12,7 @@ const bathroom = [
         },
         {
             selection_caption: "Price",
-            options: ["Small ( 8,000 - 10,000 )","Medium ( 9,000 - 11,000 )","Large ( 12000 - 15,000  )"],
+            options: ["Small ( $8,000 - $10,000 )","Medium ( $9,000 - $11,000 )","Large ( $12000 - $15,000  )"],
             type: "radio"
         },
     ],
@@ -86,7 +86,7 @@ const flooring = [
     [
         {
             selection_caption: "Price",
-            options: ["Small ( 2,500 )","Medium  ( 1,919 - 4,769  )","Large ( 3,765 - 15,000 )"],
+            options: ["Small ( $2,500 )","Medium  ( $1,919 - $4,769  )","Large ( $3,765 - $15,000 )"],
             type: "radio"
         },
     ],
@@ -122,7 +122,7 @@ const kitchen = [
         },
         {
             selection_caption: "Price",
-            options: ["Small ( 13700 )","Medium ( 16,700 - 42,000 )","Large ( 18700 - 49,000 )"],
+            options: ["Small ( $13,700 )","Medium ( $16,700 - $42,000 )","Large ( $18,700 - $49,000 )"],
             type: "radio"
         },
     ],
