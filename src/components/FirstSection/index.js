@@ -71,6 +71,7 @@ const Index = ({handleChange}) => {
 
     const HandleSelect = (select, val) => {
         setSelectChanger({ ...selectChanger, [select]: val });
+        console.log(selectChanger,select)
     };
 
 
