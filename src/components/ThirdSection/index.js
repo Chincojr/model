@@ -13,7 +13,7 @@ const Index = ({handleChange, model}) => {
             <div className='third-section-left' >
                 <img alt='' src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS0sRNjb7ls6ZzJf6LpZZh2qYnExNYvUF8zF_kMqHIa70d96DyojuUkJtfN_V1DNQULdOE&usqp=CAU' className='third-section-img'/>
                 <div className='third-selection-caption-container'>
-                    <button onClick={() => handleChange('type','complete')} className='selection-caption-third'>Complete {model} Remodel</button>
+                    <button onClick={() => handleChange('type','Complete')} className='selection-caption-third'>Complete {model} Remodel</button>
                 </div>
 
             </div>
@@ -23,7 +23,7 @@ const Index = ({handleChange, model}) => {
                     <img alt='' src='https://metrointeriors.com/wp-content/uploads/sites/7/2019/08/IMG_3510-270x180.jpeg' className='third-section-img'/>
                 </div>
                 <div className='third-selection-caption-container'>
-                    <button onClick={() => handleChange('type','partial')}   className='selection-caption-third'>Partial {model} Remodel</button>
+                    <button onClick={() => handleChange('type','Partial')}   className='selection-caption-third'>Partial {model} Remodel</button>
                 </div>            
             </div>
         </div>

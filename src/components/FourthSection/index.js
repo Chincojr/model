@@ -152,7 +152,7 @@ const kitchen = [
     ],
     [
         {
-            selection_caption: "Cabinet Type",
+            selection_caption: "Counter Tops",
             options: ["Quartz","Procelain","Granite"],
             type: "radio"
         },
@@ -188,29 +188,28 @@ const kitchen = [
     ],
     [
         {
-            selection_caption: "Counter Tops",
-            options: ["Granite", "Quarts", "Porcelain" ],
-            type: "radio"
-        },
-        {
             selection_caption: "Need a Demo",
             options: ["Yes", "No"],
             type: "radio"
         },
-    ],
-    [
         {
             selection_caption: "I would like my project completed",
             options: ["Immediately", "1-4weeks", "4+ weeks"],
             type: "radio"
         },
-    ]
+    ],
+
 ]
 
 const selection_type =[bathroom,flooring,kitchen]
 
-const Index = ({handleChange, modelValue, Reset}) => {
+const Index = ({handleChange, modelValue, Reset,type}) => {
     const [overlay, setOverlay] = useState('hidden')
+    const [formInfo, setFormInfo] = useState({
+        Flooring:{},
+        Bathroom:{},
+        Kitchen:{}
+    })
 
     const [priceSelect, setPriceSelect] = useState({
         small: false,
@@ -224,20 +223,59 @@ const Index = ({handleChange, modelValue, Reset}) => {
     }
 
     const HandleSelect = (event,sel) => {
-
         setPriceSelect({         
             small: false,
             medium: false,
             large: false,
             [sel]: true 
         });
-
-        event.target.check = true
-
-        console.log(event.target.check);
-
-
+        // event.target.check = true
+        // console.log(event.target.check);
     }
+    
+    const HandleForm = () => {
+        let selected = Object.keys(formInfo[type]).length
+        if (selected) {
+            setFormInfo({
+                Flooring:{},
+                Bathroom:{},
+                Kitchen:{}
+            })
+            handleChange('formState',formInfo[type])
+
+        } else {
+            HandlePopUp('block')
+        }
+    }
+
+    const HandleStore = (event,type,key,value) => {
+            if (event.target.type === 'checkbox') {
+                console.log('enetered');
+                if (formInfo[type][key]) {
+                    setFormInfo({...formInfo,[type]:{ ...formInfo[type],
+                        [key]:[...formInfo[type][key],value]
+                    }})
+                } else {
+                    setFormInfo({...formInfo,[type]:{ ...formInfo[type],
+                        [key]:[value]
+                    }})
+                }
+
+            } else {
+
+                setFormInfo({...formInfo,[type]:{ ...formInfo[type],
+                    [key]:value
+                }})
+            }
+
+            console.log(formInfo);
+            console.log(event.target.type);
+            // event.target.check = true
+                        
+
+            
+
+        }
 
     return (
     <>
@@ -276,16 +314,18 @@ const Index = ({handleChange, modelValue, Reset}) => {
                                                                             type={selection_info.type}
                                                                             checked={selection_info.selection_caption === 'Price' ? priceSelect[sel] : null}
                                                                             name={selection_info.selection_caption}
-                                                                            onChange={(event) =>
-                                                                                option.includes("sq.")
-                                                                                ? HandleSelect(event,sel)
-                                                                                : null
-                                                                            }
+                                                                            onChange={(event) => {
+                                                                                if (option.includes("sq.")) {
+                                                                                    HandleSelect(event, sel);
+                                                                                    HandleStore(event, type, selection_info.selection_caption, option);
+                                                                                } else {
+                                                                                    HandleStore(event, type, selection_info.selection_caption, option);
+                                                                                }
+                                                                            }}
                                                                             id={`${option} + ${selection_info.selection_caption}`}
                                                                         />
-                                                                            <label htmlFor={`${option} + ${selection_info.selection_caption}`}>{option}</label>
+                                                                        <label htmlFor={`${option} + ${selection_info.selection_caption}`}>{option}</label>
                                                                         <br />
-
                                                                     </>
                                                                 )
                                                             })
@@ -305,22 +345,18 @@ const Index = ({handleChange, modelValue, Reset}) => {
         </div>
         <div className='grid justify-center gap-2 grid-flow-col p-4'>
             <button onClick={() => Reset()} className='bg-[#212528] border-[#212528] hover:bg-transparent hover:text-[#212528] border-2  p-2 px-5 rounded-md text-white'>Cancel</button>
-            <button onClick={() => HandlePopUp('block')} className='bg-[#3aba84] border-[#3aba84] hover:bg-transparent hover:text-[#3aba84] border-2 p-2 px-5 rounded-md text-white'>OK</button>
+            <button onClick={HandleForm} className='bg-[#3aba84] border-[#3aba84] hover:bg-transparent hover:text-[#3aba84] border-2 p-2 px-5 rounded-md text-white'>OK</button>
         </div>
      </div>
      <div className={`${overlay}  fixed w-full top-0 left-0 h-full bg-[#000000B3]`}>
           <div className='fixed min-w-[200px]  top-[50%] left-[50%] bg-white -translate-x-1/2 -translate-y-[60%]  shadow-[0px 0px 10px rgba(0, 0, 0, 0.3)] p-[10px] py-[30px] rounded-md '>
         
-            <div>
-                <video width="300" height="300" muted loop autoPlay>
-                    <source src={sample} type="video/mp4" />
-                </video>
-            </div>
+            <h1 className='error'>
+                Fill form before you procced
+            </h1>
 
             <div className='w-full grid gap-2 grid-flow-col items-center justify-center text-[10px] md:text-[16px]'>
                 <button onClick={() => HandlePopUp('hidden')} className=' text-[#3aba84]'>&times; Close</button>
-                <button className='bg-[#3aba84] border-[#3aba84] hover:bg-transparent hover:text-[#3aba84] border-2 p-2 px-5 rounded-md text-white'>Completed</button>
-
             </div>
 
           </div>

@@ -3,6 +3,7 @@ import SecondSection from './components/SecondSection'
 import ThirdSection from './components/ThirdSection'
 import FourthSection from './components/FourthSection'
 import ZipSection from './components/zipcode'
+import FifthSection from './components/FifthSection'
 import { useState } from 'react';
 
 function App() {
@@ -11,6 +12,7 @@ function App() {
     model:false,
     building:false,
     type:false,
+    formState: false
   })
   const HandleChange = (sec, val) => {
     setSelected({
@@ -25,26 +27,40 @@ function App() {
       model:false,
       building:false,
       type:false,
+      formState: false
     })
   }
+
+  
   
   return (
-      <div className="px-[5%] md:px-[10%] h-full py-[5%]  flex justify-center items-center">
-        {
-          !selected.zip?
-          (
-            <ZipSection handleChange={HandleChange} />
-          )
-          :!selected.model ? (
-            <FirstSection handleChange={HandleChange} />
-          ) : !selected.building ? (
-            <SecondSection handleChange={HandleChange} />
-          ) : !selected.type ? (
-            <ThirdSection handleChange={HandleChange} model={selected.model} />
-          ) : (
-            <FourthSection handleChange={HandleChange} modelValue={selected.model === 'Bathroom'? 0 : selected.model === 'Flooring' ? 1 :2} Reset={Reset} />
-          )
-        }
+      <div className="px-[5%] md:px-[10%] h-full py-[20vh]  flex justify-center items-center">
+      {
+        !selected.zip ? (
+          <ZipSection handleChange={HandleChange} />
+        ) : !selected.model ? (
+          <FirstSection handleChange={HandleChange} />
+        ) : !selected.building ? (
+          <SecondSection handleChange={HandleChange} />
+        ) : !selected.type ? (
+          <ThirdSection handleChange={HandleChange} model={selected.model} />
+        ) : !selected.formState ? (
+          <FourthSection
+            handleChange={HandleChange}
+            modelValue={
+              selected.model === 'Bathroom'
+                ? 0
+                : selected.model === 'Flooring'
+                ? 1
+                : 2
+            }
+            Reset={Reset}
+            type={selected.model}
+          />
+        ) : (
+          <FifthSection info={selected} />
+        )
+      }
 
       </div>
 

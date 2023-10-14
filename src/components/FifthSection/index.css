@@ -1,0 +1,23 @@
+.fifth-label{
+    @apply
+    px-0
+    pr-1
+}
+
+.fifth-input{
+    @apply
+    text-black 
+    border-2 
+    border-black 
+    p-2 
+ /*   h-full 
+    w-full */
+}
+
+.error {
+    @apply
+    text-center 
+    text-xl 
+    p-3 
+    text-red-700
+}

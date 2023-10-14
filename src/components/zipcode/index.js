@@ -2,11 +2,21 @@ import React, { useState } from 'react';
 
 const Index = ({ handleChange }) => {
   const [zipCode, setZipCode] = useState('');
+  const [error, setError] = useState('')
 
   const handleZip = (event) => {
     const value = event.target.value;
     setZipCode(value);
   };
+
+  const handleNext = () => {
+    if (zipCode.length == 5 && /^\d+$/.test(zipCode)) {
+        setError('')
+        handleChange('zip', zipCode)
+    } else {
+      setError('Invalid Zip Code')
+    }
+  }
 
   return (
     <>
@@ -26,12 +36,13 @@ const Index = ({ handleChange }) => {
             maxLength="5" // Limit the input to 5 characters
             />
             <button
-            onClick={() => handleChange('zip', zipCode)}
-            className='bg-[#3aba84]  w-fit border-[#3aba84] hover:bg-transparent hover:text-[#3aba84] border-2 p-2 px-5 rounded-md text-white'
+            onClick={handleNext}
+            className='bg-[#3aba84] outline-none  w-fit border-[#3aba84] hover:bg-transparent hover:text-[#3aba84] border-2 p-2 px-5 rounded-md text-white'
             >
             NEXT
             </button>
         </div>
+        <h1 className='text-center text-xl p-3 text-red-700' >{error}</h1>
       </div>
 
     </>
@@ -39,3 +50,4 @@ const Index = ({ handleChange }) => {
 };
 
 export default Index;
+
