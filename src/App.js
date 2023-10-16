@@ -34,7 +34,7 @@ function App() {
   
   
   return (
-      <div className="px-[5%] md:px-[10%] h-full py-[20vh]  flex justify-center items-center">
+      <div className="px-[5%] md:px-[10%] h-full py-[20vh] lg:py-[10vh]  flex justify-center items-center">
       {
         !selected.zip ? (
           <ZipSection handleChange={HandleChange} />

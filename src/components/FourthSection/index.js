@@ -11,68 +11,62 @@ const bathroom = [
             type: "radio"
         },
         {
-            selection_caption: "Price",
-            options: ["Small ( $8,000 - $10,000 )","Medium ( $9,000 - $11,000 )","Large ( $12000 - $15,000  )"],
-            type: "radio"
-        },
-    ],
-    [
-        {
             selection_caption: "Cabinet Type",
             options: ["General","Semi -Custom","Custom"],
             type: "radio"
         },
+    ],
+    [
         {
             selection_caption: "Plumbing",
             options: ["Yes", "No"],
             type: "radio"
         },
-    ],
-    [
         {
             selection_caption: "Counter Tops",
             options: ["Tile","Glass","Procelain","Not Sure", "Not at this time"],
             type: "radio"
         },
+    ],
+    [
         {
             selection_caption: "Lighting",
             options: ["Basic", "Mid Range","High-End", "Not sure", "Not at this time","No"],
             type: "radio"
-        }
-    ],
-    [
+        },
         {
             selection_caption: "Tub to Shower",
             options: ["Yes", "No"],
             type: "radio"
         },
+    ],
+    [
         {
             selection_caption: "Need a New Tub",
             options: ["Yes", "No"],
             type: "radio"
         },
-    ],
-    [
         {
             selection_caption: "Walk in Shower",
             options: ["Yes", "No"],
             type: "radio"
         },
+    ],
+    [
         {
             selection_caption: "Will you need",
             options: ["New windows","Solar","Roofing","Interior painting", "Exterior painting","Siding"],
             type: "checkbox"
-        }
-
-    ],
-    [
+        },
         {
             selection_caption: "Need a Demo",
             options: ["Yes", "No"],
             type: "radio"
         },
-    ]
+    ],
+
 ]
+const bathroomPrice = ["Small ( $8,000 - $10,000 )","Medium ( $9,000 - $11,000 )","Large ( $12000 - $15,000  )"]
 
 const flooring = [
     [
@@ -81,13 +75,6 @@ const flooring = [
            selection_caption: "Square foot of the area needed",
            options: ["Small ( <100 sq. ft )","Medium  ( 101-251 sq. ft )","Large ( 251 + sq.ft )"],
            type: "radio"
-       },
-    ],
-    [
-        {
-            selection_caption: "Price",
-            options: ["Small ( $2,500 )","Medium  ( $1,919 - $4,769  )","Large ( $3,765 - $15,000 )"],
-            type: "radio"
         },
     ],
     [
@@ -110,8 +97,10 @@ const flooring = [
             options: ["Yes", "No"],
             type: "radio"
         },
-    ]
+    ],
 ]
+
+const flooringPrice = ["Small ( $2,500 )","Medium  ( $1,919 - $4,769  )","Large ( $3,765 - $15,000 )"]
 
 const kitchen = [
     [
@@ -121,77 +110,72 @@ const kitchen = [
             type: "radio"
         },
         {
-            selection_caption: "Price",
-            options: ["Small ( $13,700 )","Medium ( $16,700 - $42,000 )","Large ( $18,700 - $49,000 )"],
-            type: "radio"
-        },
-    ],
-    [
-        {
             selection_caption: "I have an island",
             options: ["Yes", "No"],
             type: "radio"
         },
+    ],
+    [
         {
             selection_caption: "The shape of my kitchen",
             options: ["Single wall","I-shape","U-shape","G-shape", "Gallery"],
             type: "radio"
         },
-    ],
-    [
         {
             selection_caption: "Cabinet Type",
             options: ["General","Semi -Custom","Custom"],
             type: "radio"
         },
+    ],
+    [
         {
             selection_caption: "Appliances",
             options: ["Keep existing", "All new"],
             type: "radio"
-        }
-    ],
-    [
+        },
         {
             selection_caption: "Counter Tops",
             options: ["Quartz","Procelain","Granite"],
             type: "radio"
         },
+    ],
+    [
         {
             selection_caption: "Plumbing",
             options: ["Yes", "No"],
             type: "radio"
-        }
-    ],
-    [
+        },
         {
             selection_caption: "Black Splash",
             options: ["4 inch", "Full Height"],
             type: "radio"
         },
+    ],
+    [
         {
             selection_caption: "Lighting",
             options: ["Basic", "Mid Range","High-End", "Not sure", "Not at this time","No"],
             type: "radio"
-        }
-    ],
-    [
+        },
         {
             selection_caption: "Will you need",
             options: ["New windows","Solar","Roofing","Interior painting", "Exterior painting","Siding", "Plumbing"],
             type: "checkbox"
         },
+    ],
+    [
         {
             selection_caption: "Tub to Shower",
             options: ["Yes", "No"],
             type: "radio"
-        }
-    ],
-    [
+        },
         {
             selection_caption: "Need a Demo",
             options: ["Yes", "No"],
             type: "radio"
         },
+    ],
+    [
         {
             selection_caption: "I would like my project completed",
             options: ["Immediately", "1-4weeks", "4+ weeks"],
@@ -201,50 +185,60 @@ const kitchen = [
 
 ]
 
+const kitchenPrice = ["Small ( $13,700 )","Medium ( $16,700 - $42,000 )","Large ( $18,700 - $49,000 )"]
+
 const selection_type =[bathroom,flooring,kitchen]
+
+const selection_price = [bathroomPrice,flooringPrice,kitchenPrice]
 
 const Index = ({handleChange, modelValue, Reset,type}) => {
     const [overlay, setOverlay] = useState('hidden')
+    const [error, setError] = useState("")
     const [formInfo, setFormInfo] = useState({
         Flooring:{},
         Bathroom:{},
         Kitchen:{}
     })
 
-    const [priceSelect, setPriceSelect] = useState({
-        small: false,
-        medium: false,
-        large: false,
-    })
+    const [priceSelect, setPriceSelect] = useState()
 
     const HandlePopUp = (value) => {
         console.log(value);
         setOverlay(value)
     }
 
-    const HandleSelect = (event,sel) => {
-        setPriceSelect({         
-            small: false,
-            medium: false,
-            large: false,
-            [sel]: true 
-        });
-        // event.target.check = true
-        // console.log(event.target.check);
+    const HandleSelect = (sel,type,modelValue,caption,option) => {
+        
+        setPriceSelect(sel);
+        setFormInfo({
+            ...formInfo,
+            [type]: {
+              ...formInfo[type],
+              Price: selection_price[modelValue][sel],
+              [caption]: [option]
+         }
+        })
+        console.log(formInfo,caption);
+
     }
     
     const HandleForm = () => {
         let selected = Object.keys(formInfo[type]).length
-        if (selected) {
+
+        if (!selected) {
+            setError("Fill form before proceeding")
+            HandlePopUp('block')
+
+        } else if(!formInfo[type]['Price']){
+            setError("Select size")
+            HandlePopUp('block')
+        }else {
+            handleChange('formState',formInfo[type])
             setFormInfo({
                 Flooring:{},
                 Bathroom:{},
                 Kitchen:{}
             })
-            handleChange('formState',formInfo[type])
-
-        } else {
-            HandlePopUp('block')
         }
     }
 
@@ -268,14 +262,14 @@ const Index = ({handleChange, modelValue, Reset,type}) => {
                 }})
             }
 
-            console.log(formInfo);
-            console.log(event.target.type);
+            console.log(formInfo,priceSelect);
+            // console.log(event.target.type);
             // event.target.check = true
                         
 
             
 
-        }
+    }
 
     return (
     <>
@@ -290,34 +284,34 @@ const Index = ({handleChange, modelValue, Reset,type}) => {
                                     selection.map((selection_info) => {
                                         return(
                                             <>
-                                                <div className='form-row-input-container'>
+                                                <div className={selection_info.selection_caption === "Price" ? 'grid grid-cols-2': 'form-row-input-container'}>
                                                     <h1>{selection_info.selection_caption}:</h1>
                                                     <div className='form-row-input'>
                                                         {
                                                             selection_info.options.map((option)=>{
                                                                 var sel
                                                                 if (option.includes("Small")) {
-                                                                    sel = 'small'
+                                                                    sel = 0
                                                                 }
 
                                                                 if (option.includes("Medium")) {
-                                                                    sel = 'medium'
+                                                                    sel = 1
                                                                 }
 
                                                                 if (option.includes("Large")) {
-                                                                    sel = 'large'
+                                                                    sel = 2
                                                                 }
 
                                                                 return(
                                                                     <>
                                                                         <input
                                                                             type={selection_info.type}
-                                                                            checked={selection_info.selection_caption === 'Price' ? priceSelect[sel] : null}
+                                                                            
                                                                             name={selection_info.selection_caption}
                                                                             onChange={(event) => {
                                                                                 if (option.includes("sq.")) {
-                                                                                    HandleSelect(event, sel);
-                                                                                    HandleStore(event, type, selection_info.selection_caption, option);
+                                                                                    HandleSelect(sel,type,modelValue, selection_info.selection_caption, option);
+                                                                                    // HandleSelect(sel,type,modelValue) ;
                                                                                 } else {
                                                                                     HandleStore(event, type, selection_info.selection_caption, option);
                                                                                 }
@@ -352,7 +346,7 @@ const Index = ({handleChange, modelValue, Reset,type}) => {
           <div className='fixed min-w-[200px]  top-[50%] left-[50%] bg-white -translate-x-1/2 -translate-y-[60%]  shadow-[0px 0px 10px rgba(0, 0, 0, 0.3)] p-[10px] py-[30px] rounded-md '>
         
             <h1 className='error'>
-                Fill form before you procced
+                {error}
             </h1>
 
             <div className='w-full grid gap-2 grid-flow-col items-center justify-center text-[10px] md:text-[16px]'>

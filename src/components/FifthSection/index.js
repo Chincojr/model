@@ -26,7 +26,7 @@ const MyForm = ({info}) => {
     setOverlay(value)
   }
 
-  const formFields = [
+  var formFields = [
     {
       name: 'name',
       label: 'Name',
@@ -37,17 +37,18 @@ const MyForm = ({info}) => {
       label: 'Email',
       type: 'email',
     },
-    {
-      name: 'checkbox',
-      label: 'Will you need a pricing ',
-      type: 'checkbox',
-    },
-    {
+
+  ];
+
+  console.log(info['formState']['Price'], 'price amount');
+  if (info['formState']['Price']) {
+    formFields = [...formFields,{name:`Price: ${info['formState']['Price']}`,type:"div"}, {
       name: 'phoneNumber',
       label: 'Phone Number',
       type: 'text',
-    },
-  ];
+    },]
+    console.log(formFields);
+  }
 
   const handleInputChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -134,29 +135,7 @@ const MyForm = ({info}) => {
     tableHTML += '</table>';
 
     return tableHTML;
-}
-
-
-  const styles = `    
-        <style>
-            table {
-                width: 100%;
-                border-collapse: collapse;
-            }
-
-            table, th, td {
-                border: 1px solid #ccc;
-            }
-
-            th, td {
-                padding: 8px;
-                text-align: left;
-            }
-
-            th {
-                background-color: #f2f2f2;
-            }
-        </style>`
+  }
 
   const handleSubmit = async(e) => {
     e.preventDefault();
@@ -195,6 +174,8 @@ const MyForm = ({info}) => {
     }
   };
 
+  console.log(info);
+
 
   return (
     <div className='py-[5%] flex flex-col justify-center items-center'>
@@ -207,17 +188,9 @@ const MyForm = ({info}) => {
                 return(
                     <>
                         {
-                            field.type === 'checkbox' ? (
+                            field.type === 'div' ? (
                             <div className="flex justify-center items-center " key={field.name}>
-                                <label className='fifth-label ' >{field.label}:</label>
-                                <input
-                                    type={field.type}
-                                    name={field.name}
-                                    checked={formData[field.name]}
-                                    onChange={handleInputChange}
-                                    className='fifth-input'
-                                    maxLength='10'
-                                />
+                                <label className='fifth-label ' >{field.name}</label>
                                 <div className="error">{errors[field.name]}</div>
                             </div>
                         ) : (

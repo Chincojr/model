@@ -9,7 +9,7 @@ const Index = ({handleChange}) => {
     <div className='flex flex-col w-full h-full justify-center items-center '>
         <h1 className='text-[30px] text-center lg:text-[65px] font-semibold mb-[40px]'>
             Where do you live in:
-        </h1>
+        </h1> 
         <div className='grid w-full grid-rows-3 lg:grid-rows-1 lg:grid-cols-3 gap-5 h-full'>
             <div className='second-section-selection'> 
                 <div className='selection-top'>
