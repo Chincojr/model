@@ -179,8 +179,8 @@ const MyForm = ({info}) => {
 
   return (
     <div className='py-[5%] flex flex-col justify-center items-center'>
-        <h1 className='text-[30px] text-center lg:text-[65px] font-semibold mb-[40px]'>
-            Your Contact Info:
+        <h1 className='text-[30px] text-center capitalize lg:text-[40px] font-semibold mb-[40px]'>
+            enter in your information for up to $ 2,000 off your project:
         </h1>
     <form className='grid gap-3 w-fit ' onSubmit={handleSubmit}>
         {
