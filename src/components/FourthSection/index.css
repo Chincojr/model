@@ -1,0 +1,46 @@
+.form-row{
+    @apply
+    grid 
+    /* grid-cols-2  */
+    w-full
+    p-4
+    px-[10%]
+    gap-4
+    lg:gap-7
+    /* lg:grid-cols-2 */
+}
+
+.form-row:nth-child(odd){
+    @apply
+    bg-[#d7d7d7]
+}
+
+.form-row-input-container{
+    @apply
+    grid
+    /* lg:grid-cols-2 */
+
+}
+
+.form-row-input{
+    @apply
+    pl-5
+}
+
+.crumb{
+    clip-path: polygon(0% 0%, 100% 0%, 98% 100%, 0% 100%);
+    
+}
+
+.crumb2{
+    clip-path: polygon(2% 0%, 100% 0%, 98% 100%, 0% 100%);
+}
+
+.crumb3{
+    clip-path: polygon(2% 0%, 100% 0%, 100% 100%, 0% 100%);
+}
+
+.grid-container{
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr))
+}
+

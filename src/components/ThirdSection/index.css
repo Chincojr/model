@@ -1,0 +1,49 @@
+.third-section-left{
+    @apply
+    grid
+    grid-rows-[85%_15%]
+}
+
+.third-section-img{
+    @apply
+    w-full
+    h-full
+}
+
+.third-section-right{
+    @apply
+    grid
+    grid-rows-[85%_15%]
+}
+
+.third-section-right-img-container{
+    @apply
+    grid
+    grid-cols-2
+    gap-1
+    overflow-hidden
+}
+
+.third-selection-caption-container{
+    @apply
+    flex
+    justify-start
+    p-3
+}
+
+.selection-caption-third{
+    @apply 
+    bg-[#caccd0]
+    p-5
+    rounded
+    flex
+    justify-center
+    items-center
+    hover:bg-[#212528]
+    hover:text-white
+    w-fit
+    
+    /* h-full */
+}
+
+
