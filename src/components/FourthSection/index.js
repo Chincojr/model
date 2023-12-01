@@ -640,7 +640,7 @@ const Index = ({handleChange, modelValue, Reset,type}) => {
             </div>
             <div className={selection_info.selection_caption === "Price" ? 'grid grid-cols-': 'form-row-input-container'}>
                 <h1 className='mb-2'>{selection_info.selection_caption}:</h1>
-                <div className='form-row-input lg:grid grid-flow-col grid-cols- gap-3'>
+                <div className='form-row-input grid lg:grid-flow-col grid-flow-row gap-5'>
                     {
                         selection_info.options.map((obj)=>{
                             var sel
@@ -658,7 +658,7 @@ const Index = ({handleChange, modelValue, Reset,type}) => {
                                 <>
                                   {
                                     obj.image ?
-                                    <div className='grid gap-3'>
+                                    <div className='grid gap-1'>
                                       <img src={obj.image} className='lg:h-[200px] rounded-md bg-center bg-contain lg:w-[200px] h-[100px] w-[100px]' />
                                       <div>
 
