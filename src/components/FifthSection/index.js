@@ -1,11 +1,9 @@
 import React, { useState } from 'react';
 import './index.css';
-import sample from '../../assets/animation_lneiudfu.mp4'
-import emailjs from 'emailjs-com';
 
 
 
-const MyForm = ({info}) => {
+const MyForm = ({info, handleChange}) => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -19,12 +17,7 @@ const MyForm = ({info}) => {
     phoneNumber: '',
   });
 
-  const [overlay, setOverlay] = useState('hidden')
 
-  const HandlePopUp = (value) => {
-    console.log(value);
-    setOverlay(value)
-  }
 
   var formFields = [
     {
@@ -139,10 +132,8 @@ const MyForm = ({info}) => {
 
   const handleSubmit = async(e) => {
     e.preventDefault();
-
     if (handleValidation()) {
       // Handle form submission when there are no errors
-      HandlePopUp('block')
       let table = generateHTMLTable(info.formState)
       const templateParams = {
         zip:info.zip,
@@ -152,27 +143,13 @@ const MyForm = ({info}) => {
         table,
         ...formData,        
       }
+      handleChange('feedback',templateParams)
 
-      console.log(templateParams)
-      await emailjs
-        .send(
-            "service_phnkfe5",
-            "template_1j8o59e",
-            templateParams,
-            'oItqjuo0LIQ70NLUz'
-        )
-        .then(
-            function (response) {
-            console.log("SUCCESS!", response.status, response.text);
-            console.log('Form submitted:', formData);
-            },
-            function (error) {
-            console.log("FAILED...", error);
-            }
-        );
 
     }
   };
+
+
 
   console.log(info);
 
@@ -180,7 +157,7 @@ const MyForm = ({info}) => {
   return (
     <div className='py-[5%] flex flex-col justify-center items-center'>
         <h1 className='text-[30px] text-center capitalize lg:text-[40px] font-semibold mb-[40px]'>
-            enter in your information for up to $ 2,000 off your project:
+            Get the Full Cost Report
         </h1>
     <form className='grid gap-3 w-fit ' onSubmit={handleSubmit}>
         {
@@ -201,7 +178,7 @@ const MyForm = ({info}) => {
                                     name={field.name}
                                     value={formData[field.name]}
                                     onChange={handleInputChange}
-                                    className='fifth-input '
+                                    className='fifth-input'
                                 />
                                 <div className="error">{errors[field.name]}</div>
                             </div>
@@ -225,21 +202,7 @@ const MyForm = ({info}) => {
 
     </form>
 
-    <div className={`${overlay}  fixed w-full top-0 left-0 h-full bg-[#000000B3]`}>
-          <div className='fixed min-w-[200px]  top-[50%] left-[50%] bg-white -translate-x-1/2 -translate-y-[60%]  shadow-[0px 0px 10px rgba(0, 0, 0, 0.3)] p-[10px] py-[30px] rounded-md '>
-        
-            <div>
-                <video width="300" height="300" muted loop autoPlay>
-                    <source src={sample} type="video/mp4" />
-                </video>
-            </div>
-
-            <div className='w-full grid gap-2 grid-flow-col items-center justify-center text-[10px] md:text-[16px]'>
-                <button onClick={() => HandlePopUp('hidden')} className=' text-[#3aba84]'>&times; Close</button>
-            </div>
-
-          </div>
-     </div>
+ 
 
     </div>
   );
@@ -247,4 +210,3 @@ const MyForm = ({info}) => {
 
 export default MyForm;
 
-// onClick={() => HandlePopUp('block')}

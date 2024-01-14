@@ -5,6 +5,8 @@ import ThirdSection from './components/ThirdSection';
 import FourthSection from './components/FourthSection';
 import ZipSection from './components/zipcode';
 import FifthSection from './components/FifthSection';
+import SixthSection from './components/SixthSection';
+
 
 function App() {
   const [selected, setSelected] = useState({
@@ -13,17 +15,18 @@ function App() {
     building: false,
     type: false,
     formState: false,
+    feedback: false,
   });
 
   
-  const [progress, setProgress] = useState('25');
+  const [progress, setProgress] = useState('30');
 
   const handleChange = (sec, val) => {
     setSelected((prevSelected) => ({
       ...prevSelected,
       [sec]: val,
     }));
-    setProgress(`${Number(progress) + 15}`);
+    setProgress(`${Number(progress) + 10}`);
   };
 
   const reset = () => {
@@ -33,8 +36,9 @@ function App() {
       building: false,
       type: false,
       formState: false,
+      feedback: false,
     });
-    setProgress(25);
+    setProgress(30);
   };
 
   console.log(progress);
@@ -44,34 +48,34 @@ function App() {
         <>
           <ZipSection handleChange={handleChange} />
           <div
-            className={`absolute top-0 left-0 w-[25%] border-[#3aba84] border-[20px] transition-all duration-300 ease-in-out`}
+            className={`fixed top-0 left-0 w-[15%] border-[#3aba84] border-[20px] transition-all duration-300 ease-in-out`}
           ></div>
         </>
       ) : !selected.model ? (
         <>
           <FirstSection handleChange={handleChange} />
           <div
-            className={`absolute top-0 left-0 w-[40%] border-[#3aba84] border-[20px] transition-all duration-300 ease-in-out`}
+            className={`fixed top-0 left-0 w-[30%] border-[#3aba84] border-[20px] transition-all duration-300 ease-in-out`}
           ></div>
         </>
       ) : !selected.building ? (
         <>
           <SecondSection handleChange={handleChange} />
           <div
-            className={`absolute top-0 left-0 w-[55%] border-[#3aba84] border-[20px] transition-all duration-300 ease-in-out`}
+            className={`fixed top-0 left-0 w-[45%] border-[#3aba84] border-[20px] transition-all duration-300 ease-in-out`}
           ></div>
         </>
       ) : !selected.type ? (
         <>
           <ThirdSection handleChange={handleChange} model={selected.model} />
           <div
-            className={`absolute top-0 left-0 w-[70%] border-[#3aba84] border-[20px] transition-all duration-300 ease-in-out`}
+            className={`fixed top-0 left-0 w-[60%] border-[#3aba84] border-[20px] transition-all duration-300 ease-in-out`}
           ></div>
         </>
       ) : !selected.formState ? (
         <>
           <div
-            className={`absolute top-0 left-0 w-[85%] border-[#3aba84] border-[20px] transition-all duration-300 ease-in-out`}
+            className={`fixed top-0 left-0 w-[75%] border-[#3aba84] border-[20px] transition-all duration-300 ease-in-out`}
           ></div>
           <FourthSection
             handleChange={handleChange}
@@ -82,14 +86,25 @@ function App() {
             type={selected.model}
           />
         </>
+      ) : !selected.feedback ? (
+        <>
+          <div
+            className={`fixed top-0 left-0 w-[90%] border-[#3aba84] border-[20px] transition-all duration-300 ease-in-out`}
+          ></div>
+          <FifthSection handleChange={handleChange} info={selected} />
+        </>
+        
       ) : (
         <>
           <div
-            className={`absolute top-0 left-0 w-[100%] border-[#3aba84] border-[20px] transition-all duration-300 ease-in-out`}
+            className={`fixed top-0 left-0 w-[100%] border-[#3aba84] border-[20px] transition-all duration-300 ease-in-out`}
           ></div>
-          <FifthSection info={selected} />
+          <SixthSection handleChange={handleChange} info={selected} />
         </>
-      )}
+        
+      )
+      
+      }
   
       {/* Add the progress bar */}
     </div>
@@ -98,3 +113,4 @@ function App() {
 }
 
 export default App;
+

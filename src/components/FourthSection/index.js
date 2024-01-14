@@ -326,7 +326,7 @@ const kitchen = {
         },
         {
           name:"I-shape",
-          image: "https://www.myidealhome.us/wp-content/uploads/2018/03/i-style-kitchen-with-island-flat-panel-cabinets.jpg",
+          image: "https://jumanji.livspace-cdn.com/magazine/wp-content/uploads/sites/2/2021/09/29215952/2017_10_25_KT12_AV_01-1-768x512.jpg",
         },
         {
           name:"G-shape",
@@ -654,12 +654,23 @@ const Index = ({handleChange, modelValue, Reset,type}) => {
                              if (option.includes("Large")) {
                                 sel = 2
                             }
+                            let target = {
+                              type: selection_info.type,
+                            }
+                            // let evnt = {target}
                              return(
                                 <>
                                   {
                                     obj.image ?
                                     <div className='grid gap-1'>
-                                      <img src={obj.image} className='lg:h-[200px] rounded-md bg-center bg-contain lg:w-[200px] h-[100px] w-[100px]' />
+                                      <img onClick={(event) => {
+                                              if (option.includes("sq.")) {
+                                                  HandleSelect(sel,type,modelValue, selection_info.selection_caption, option);
+                                              } else {
+                                                  HandleStore({target}, type, selection_info.selection_caption, option);
+                                              }
+                                            }}
+                                            src={obj.image} className='lg:h-[200px] rounded-md bg-center bg-contain lg:w-[200px] h-[100px] w-[100px]' />
                                       <div>
 
                                         <input
@@ -686,7 +697,6 @@ const Index = ({handleChange, modelValue, Reset,type}) => {
                                         <input
                                           type={selection_info.type}
                                           checked={formInfo[type][selection_info.selection_caption] && formInfo[type][selection_info.selection_caption] === option ? true : false}
-                                          // checked='true'
                                           name={selection_info.selection_caption}
                                           onChange={(event) => {
                                               if (option.includes("sq.")) {
@@ -716,7 +726,7 @@ const Index = ({handleChange, modelValue, Reset,type}) => {
         </div>
         <div className='grid justify-center gap-2 grid-flow-col p-4'>
             <button onClick={() => Reset()} className='bg-[#212528] border-[#212528] hover:bg-transparent hover:text-[#212528] border-2  p-2 px-5 rounded-md text-white'>Cancel</button>
-            <button onClick={HandleForm} className='bg-[#3aba84] border-[#3aba84] hover:bg-transparent hover:text-[#3aba84] border-2 p-2 px-5 rounded-md text-white'>OK</button>
+            <button onClick={HandleForm} className='bg-[#3aba84] border-[#3aba84] hover:bg-transparent hover:text-[#3aba84] border-2 p-2 px-5 rounded-md text-white'>NEXT</button>
         </div>
      </div>
      <div className={`${overlay}  fixed w-full top-0 left-0 h-full bg-[#000000B3]`}>
